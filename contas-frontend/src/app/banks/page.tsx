@@ -1,18 +1,36 @@
+"use client";
+
 import Link from "next/link";
-import { BankFormData } from "@/lib/types";
 import { bankService } from "@/lib/services";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { IconButton } from "@mui/material";
+import BankItem from "@/lib/components/ui/BankItem";
+import { useEffect, useState } from "react";
 
-export default async function BankListPage() {
-  const banks: BankFormData[] = await bankService.getAll();
+interface Bank {
+  id: string;
+  name: string;
+  code: string;
+}
 
-  // Ação de deleção para o servidor
-  async function excluirBanco(id: number) {
-    if (confirm("Tem certeza que deseja excluir este banco?")) {
-      await bankService.delete(`bancos/${id}/`);
-      // carregarBancos();
+export default function BankListPage() {
+  const [banks, setBanks] = useState<Bank[]>([]);
+
+  useEffect(() => {
+    // função async dentro do useEffect
+    async function loadBanks() {
+      const data = await bankService.getAll();
+      setBanks(data.filter((b: Bank) => b.id));
     }
+
+    loadBanks(); // chama a função async
+  }, []);
+
+  function handleRemoved() {
+    // recarrega a lista após exclusão
+    async function reload() {
+      const data = await bankService.getAll();
+      setBanks(data.filter((b: Bank) => b.id));
+    }
+    reload();
   }
 
   return (
@@ -20,7 +38,7 @@ export default async function BankListPage() {
       <h1 className="text-2xl mb-4">Lista de Bancos</h1>
       <Link
         href="/banks/create"
-        className="bg-green-500 text-white px-4 py-2 rounded"
+        className="bg-green-500 px-4 py-2 rounded"
       >
         Novo Banco
       </Link>
@@ -34,12 +52,8 @@ export default async function BankListPage() {
             <div className="flex gap-2">
               <Link href={`/banks/${bank.id}`}>Detalhes</Link>
               <Link href={`/banks/${bank.id}/edit`}>Editar</Link>
-              {/* Formulário para a Server Action */}
-              <IconButton aria-label="delete">
-                <DeleteIcon
-                  // onClick={() => excluirBanco(bank.id)}
-                />
-              </IconButton>
+
+              <BankItem bankId={bank.id} onRemoved={handleRemoved} />
             </div>
           </li>
         ))}
