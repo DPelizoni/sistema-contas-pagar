@@ -1,0 +1,16 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+html,
+body,
+#__next,
+.app-container {
+  height: 100%;
+}
+
+body {
+  overflow: hidden; /* Esconde a barra de rolagem do corpo */
+}
+
+.main-content {
+  overflow-y: auto; /* Permite a barra de rolagem apenas no conteúdo */
+}

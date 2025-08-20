@@ -1,7 +1,7 @@
 "use client"; // necessário para usar useState e useEffect
 
 import { useEffect, useState } from "react";
-import api from "../../services/api";
+import api from "../../lib/services/api";
 import Link from "next/link";
 import { Box, Button, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
