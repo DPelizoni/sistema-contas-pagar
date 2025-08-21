@@ -4,6 +4,7 @@ import Link from "next/link";
 import { bankService } from "@/lib/services";
 import BankItem from "@/lib/components/ui/BankItem";
 import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 
 interface Bank {
   id: string;
@@ -18,7 +19,7 @@ export default function BankListPage() {
     // função async dentro do useEffect
     async function loadBanks() {
       const data = await bankService.getAll();
-      setBanks(data.filter((b: Bank) => b.id));
+      setBanks(data.filter((b: Bank) => b.id)); // filtra para garantir que o id é uma string
     }
 
     loadBanks(); // chama a função async
@@ -35,12 +36,12 @@ export default function BankListPage() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl mb-4">Lista de Bancos</h1>
+      <h1 className="text-2xl mb-4">Bancos</h1>
       <Link
         href="/banks/create"
         className="bg-green-500 px-4 py-2 rounded"
       >
-        Novo Banco
+        <Button variant="primary">Cadastrar Banco</Button>
       </Link>
 
       <ul className="mt-4 space-y-2">
