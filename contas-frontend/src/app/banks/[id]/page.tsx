@@ -1,4 +1,4 @@
-import { bankService } from "@/lib/services";
+import { bankService } from "@/shared/services";
 
 import Link from "next/link";
 

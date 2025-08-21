@@ -1,6 +1,6 @@
-import { bankService } from "@/lib/services";
-import BankForm from "@/lib/components/forms/BankForm";
-import { BankFormData } from "@/lib/types";
+import { bankService } from "@/shared/services";
+import BankForm from "@/shared/components/forms/BankForm";
+import { BankFormData } from "@/shared/types";
 import { redirect } from "next/navigation"; // Importe 'redirect'
 
 export default async function EditBankPage({

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { bankService } from "@/lib/services";
-import BankItem from "@/lib/components/ui/BankItem";
+import { bankService } from "@/shared/services";
+import BankItem from "@/shared/components/ui/BankItem";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 

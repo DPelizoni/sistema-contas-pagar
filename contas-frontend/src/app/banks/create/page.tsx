@@ -1,9 +1,9 @@
 "use client";
 
-import BankForm from "@/lib/components/forms/BankForm";
+import BankForm from "@/shared/components/forms/BankForm";
 import { useRouter } from "next/navigation";
-import { bankService } from "@/lib/services";
-import { BankFormData } from "@/lib/types";
+import { bankService } from "@/shared/services";
+import { BankFormData } from "@/shared/types";
 
 export default function CreateBankPage() {
   const router = useRouter();

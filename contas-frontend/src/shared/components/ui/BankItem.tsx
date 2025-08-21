@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ButtonDelete from "./ButtonDelete";
-import { bankService } from "@/lib/services";
+import { bankService } from "@/shared/services";
 
 interface Props {
   bankId: string;

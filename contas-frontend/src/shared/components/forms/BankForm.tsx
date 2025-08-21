@@ -2,8 +2,8 @@
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { BankFormData } from "@/lib/types";
-import { bankSchema } from "@/lib/schemas";
+import { BankFormData } from "@/shared/types";
+import { bankSchema } from "@/shared/schemas";
 import { useRouter } from "next/navigation";
 import { Button, ButtonGroup, Form } from "react-bootstrap";
 
