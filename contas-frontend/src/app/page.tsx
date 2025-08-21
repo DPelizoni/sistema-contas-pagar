@@ -1,3 +1,5 @@
+import ImageSistem from "@/shared/components/ui/ImageSistem";
+
 export default function Home() {
-  return <div></div>;
+  return <ImageSistem />;
 }

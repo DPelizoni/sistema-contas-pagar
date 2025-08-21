@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <Navbar bg="dark" variant="dark" className="flex-shrink-0">
       <Container fluid>
-        <Navbar.Brand href="#">Minha App</Navbar.Brand>
+        <Navbar.Brand href="/">Sistema de Contas a Pagar</Navbar.Brand>
       </Container>
     </Navbar>
   );

@@ -10,5 +10,5 @@ export const bankSchema = yup.object().shape({
   code: yup
     .string()
     .required("Código é obrigatório")
-    .length(3, "Código deve ter 3 caracteres"),
+    .length(3, "Código deve ter 3 números"),
 });
