@@ -9,6 +9,7 @@ import { Button, ButtonGroup, Table } from "react-bootstrap";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
 
 interface Bank {
   id: string;
@@ -29,21 +30,19 @@ export default function BankListPage() {
     loadBanks(); // chama a função async
   }, []);
 
-  function handleRemoved() {
-    // recarrega a lista após exclusão
-    async function reload() {
-      const data = await bankService.getAll();
-      setBanks(data.filter((b: Bank) => b.id));
-    }
-    reload();
-  }
+  const handleRemoved = (id: string) => {
+    setBanks((prev) => prev.filter((b) => b.id !== id));
+  };
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl mb-4">Bancos</h1>
+      <h1 className="mb-4 d-flex align-items-center gap-2">
+        <AccountBalanceOutlinedIcon fontSize="large" />
+        Bancos
+      </h1>
 
       <Link href="/banks/create">
-        <Button variant="primary">
+        <Button variant="success">
           <AddBoxOutlinedIcon /> Cadastrar Banco
         </Button>
       </Link>
@@ -60,32 +59,41 @@ export default function BankListPage() {
           </tr>
         </thead>
         <tbody>
-          {banks.map((bank) => (
-            <tr key={bank.code}>
-              <td>{bank.id}</td>
-              <td>{bank.code}</td>
-              <td>{bank.name}</td>
-
-              <td className="d-flex justify-content-center">
-                <ButtonGroup className="d-flex gap-2 col-2" size="sm">
-                  <Link
-                    href={`/banks/${bank.id}`}
-                    className="btn btn-secondary btn-sm"
-                  >
-                    <VisibilityOutlinedIcon fontSize="small" />
-                  </Link>
-
-                  <Link
-                    href={`/banks/${bank.id}/edit`}
-                    className="btn btn-primary btn-sm"
-                  >
-                    <EditOutlinedIcon fontSize="small" />
-                  </Link>
-                  <BankItem bankId={bank.id} onRemoved={handleRemoved} />
-                </ButtonGroup>
+          {banks.length === 0 ? (
+            <tr>
+              <td colSpan={4} className="text-center">
+                Não há registros
               </td>
             </tr>
-          ))}
+          ) : (
+            banks.map((bank) => (
+              <tr key={bank.code}>
+                <td>{bank.id}</td>
+                <td>{bank.code}</td>
+                <td>{bank.name}</td>
+
+                <td className="d-flex justify-content-center">
+                  <ButtonGroup className="d-flex gap-2 col-2" size="sm">
+                    <Link
+                      href={`/banks/${bank.id}`}
+                      className="btn btn-secondary btn-sm"
+                    >
+                      <VisibilityOutlinedIcon fontSize="small" />
+                    </Link>
+
+                    <Link
+                      href={`/banks/${bank.id}/edit`}
+                      className="btn btn-primary btn-sm"
+                    >
+                      <EditOutlinedIcon fontSize="small" />
+                    </Link>
+
+                    <BankItem bankId={bank.id} onRemoved={handleRemoved} />
+                  </ButtonGroup>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </Table>
     </div>

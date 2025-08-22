@@ -1,4 +1,4 @@
-import { BankFormData } from "@/lib/types/bankTypes";
+import { BankFormData } from "@/shared/types/bankTypes";
 
 export const BankFormDefaults: BankFormData = {
   name: "",

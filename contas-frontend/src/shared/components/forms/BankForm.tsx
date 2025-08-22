@@ -36,6 +36,7 @@ export default function BankForm({ defaultValues, onSubmit }: BankFormProps) {
 
   return (
     <Form
+      autoComplete="off"
       onSubmit={handleSubmit(handleFormSubmit)}
       className="space-y-4 p-4 border rounded max-w-md"
     >
