@@ -1,6 +1,6 @@
 import { bankService } from "@/shared/services";
-
 import Link from "next/link";
+import { formatDateToReadable } from "@/shared/utils/dateFormatter";
 
 export default async function BankDetailPage({
   params,
@@ -12,9 +12,11 @@ export default async function BankDetailPage({
 
   return (
     <div>
-      <h1>Nome: {bank.name}</h1>
+      <h1>{bank.name}</h1>
       <p>Código: {bank.code}</p>
       <p>ID: {bank.id}</p>
+      <p>Criado em: {formatDateToReadable(bank.created_at)}</p>
+      <p>Atualizado em: {formatDateToReadable(bank.updated_at)}</p>
       <div>
         <Link href={`/banks/${id}/edit`}>Editar</Link>
         <Link href="/banks">Voltar</Link>

@@ -46,6 +46,7 @@ export default function BankForm({ defaultValues, onSubmit }: BankFormProps) {
           type="text"
           placeholder="Informe o nome do banco"
           {...register("name")}
+          autoFocus
         />
         <Form.Text id="name" className="text-danger">
           {errors.name && <p>{errors.name.message}</p>}
